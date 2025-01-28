@@ -7,7 +7,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
 
     }
-    #HELLO
     // Update is called once per frame
     void Update()
     {
