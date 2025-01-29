@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
-    public Rigidbody sphereRigidbody; // Reference to the Rigidbody2D component attached to the GameObject
-    public float ballSpeed = 10f; // Speed of the ball
+    [SerializeField] private Rigidbody sphereRigidbody; // Reference to the Rigidbody2D component attached to the GameObject
+    [SerializeField] private float ballSpeed = 10f; // Speed of the ball
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
