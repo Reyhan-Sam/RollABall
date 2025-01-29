@@ -4,6 +4,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
 {
     [SerializeField] private Rigidbody sphereRigidbody; // Reference to the Rigidbody2D component attached to the GameObject
     [SerializeField] private float ballSpeed = 10f; // Speed of the ball
+    public int jumpHigh = 1;
+    public bool isGrounded = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,10 +34,26 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             inputVector += Vector2.left;
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (isGrounded == true)
+            {
+                sphereRigidbody.AddForce(Vector3.up * jumpHigh, ForceMode.Impulse);
+                isGrounded = false;
+            }
+        }
+
         Vector3 inputXZPlane = new Vector3(inputVector.x, 0, inputVector.y);
         sphereRigidbody.AddForce(inputXZPlane * ballSpeed);
         Debug.Log("Resultant Vector: " + inputVector);
         Debug.Log("Resultant 3D Vector: " + inputXZPlane);
 
+    }
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+        }
     }
 }
