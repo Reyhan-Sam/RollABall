@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
+    public Rigidbody sphereRigidbody; // Reference to the Rigidbody2D component attached to the GameObject
+    public float ballSpeed = 10f; // Speed of the ball
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,8 +32,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             inputVector += Vector2.left;
         }
-
+        Vector3 inputXZPlane = new Vector3(inputVector.x, 0, inputVector.y);
+        sphereRigidbody.AddForce(inputXZPlane * ballSpeed);
         Debug.Log("Resultant Vector: " + inputVector);
+        Debug.Log("Resultant 3D Vector: " + inputXZPlane);
 
     }
 }
